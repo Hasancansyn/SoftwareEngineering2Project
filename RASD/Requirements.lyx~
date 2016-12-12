@@ -1,0 +1,459 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Requirements
+\end_layout
+
+\begin_layout Subsection
+External interface requirements
+\end_layout
+
+\begin_layout Standard
+In this sections it is provided 
+\end_layout
+
+\begin_layout Subsection
+Service interface
+\end_layout
+
+\begin_layout Standard
+The system to be developed need to interact with the external services
+\end_layout
+
+\begin_layout Enumerate
+Gps system of smartphones
+\end_layout
+
+\begin_layout Enumerate
+Gps system of cars
+\end_layout
+
+\begin_layout Enumerate
+Mobile phone camera
+\end_layout
+
+\begin_layout Enumerate
+External maps (ex.
+ Google Maps) to see the position of cars
+\end_layout
+
+\begin_layout Enumerate
+Online payment systems( paypal, credit card ...)
+\end_layout
+
+\begin_layout Enumerate
+email server
+\end_layout
+
+\begin_layout Subsection
+Comunication interface
+\end_layout
+
+\begin_layout Standard
+The system to be developed need to comunicate trought internet
+\end_layout
+
+\begin_layout Subsection
+Technological requirements
+\end_layout
+
+\begin_layout Standard
+The cars that will be used in PowerEnjoy carsharing system must be provided
+ with the following technological subsystems:
+\end_layout
+
+\begin_layout Enumerate
+The cars need to have a GPS system
+\end_layout
+
+\begin_layout Enumerate
+The cars need to have a internet connection
+\end_layout
+
+\begin_layout Enumerate
+The cars need to know how many passengers are on board
+\end_layout
+
+\begin_layout Enumerate
+The cars can be locked/unlocked remotely
+\end_layout
+
+\begin_layout Subsection
+Functional requirement
+\end_layout
+
+\begin_layout Subsubsection
+[G1] Non-registered user must be able to register and log-in using their
+ credential
+\end_layout
+
+\begin_layout Enumerate
+System shall provide a registration form
+\end_layout
+
+\begin_layout Enumerate
+System shall save data provided by users
+\end_layout
+
+\begin_layout Enumerate
+System shall verify payment details provided by the user at registration
+ ( using API of the external payment service )
+\end_layout
+
+\begin_layout Enumerate
+System shall return to user login password via email
+\end_layout
+
+\begin_layout Enumerate
+System shall provide a log-in form
+\end_layout
+
+\begin_layout Subsubsection
+[G2] User must be able to see available cars
+\end_layout
+
+\begin_layout Enumerate
+System shall interaface with gps of mobile phone in case the user want to
+ use his/her position
+\end_layout
+
+\begin_layout Enumerate
+System shall retrive available car position(do not show reserved car; do
+ not show cars in use by other users)
+\end_layout
+
+\begin_layout Enumerate
+System shall show position of the user and of other cars in a map on the
+ device used by the user.
+ The system only show available cars within a certain distance from the
+ user position(the default distance is 500m)
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+The system shall allow user to specify the distance from a given position
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+[G3] User must be able to reserve a car
+\end_layout
+
+\begin_layout Enumerate
+System shall allow user to reserve a car
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+System save the reservation and generate an unique id
+\end_layout
+
+\begin_layout Enumerate
+After reservation the system apply a timer to the reservation
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If the user does not pick up the car within a hour from reservation the
+ system charge a 1euros fee
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+System shall notify the user when a reservation has been inserted in the
+ system
+\end_layout
+
+\begin_layout Subsubsection
+User must be able to unlock a car if free or if reserved by himself
+\end_layout
+
+\begin_layout Enumerate
+System shall be able to use the position of the user
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+PEM shall be able to send position to the backend
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+System shall unlock the car remotely when a user and his reserved car are
+ less than 10m away
+\end_layout
+
+\begin_layout Subsubsection
+System have to be updated by car
+\end_layout
+
+\begin_layout Enumerate
+Car need a system to communicate (via internet) to the remote system
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Cars have to provide:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Power charge
+\end_layout
+
+\begin_layout Enumerate
+estimation of km it can run
+\end_layout
+
+\begin_layout Enumerate
+GPS coordinates
+\end_layout
+
+\begin_layout Enumerate
+Money charge
+\end_layout
+
+\begin_layout Enumerate
+Position is safe/unsafe
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Informations at point a must be provided during the ride and when the car
+ is locked
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+The system should incentivize virtuous behavior
+\end_layout
+
+\begin_layout Standard
+Within this section there will be collected all functional requirements
+ related to virtuous behavior
+\end_layout
+
+\begin_layout Enumerate
+The system shall collect the following informations after each ride:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+number of passengers on board
+\end_layout
+
+\begin_layout Enumerate
+battery charge
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The system shall calculate the discount according to virtuous functionality
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+if more than a discount is applicable to the user, the system apply the
+ maximum discount between all applicable discount (not the cumulative discount)
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+Others functional requirements
+\end_layout
+
+\begin_layout Enumerate
+System shall notify user about how much he has to pay after each ride.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+The notification contains an invoice with the ammount of money to pay and
+ the applied discount( if any)
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+If the transaction cannot be done due to insufficient money, the application
+ will not offer other services until the user pay the debt
+\end_layout
+
+\begin_layout Subsection
+Non functional requirements
+\end_layout
+
+\begin_layout Standard
+Since PE is intended to offer a service to customers and in order to guarantee
+ a high quality of service, according to stakeholders' expectations we identifie
+d the following non functional requirements
+\end_layout
+
+\begin_layout Subsubsection
+Performance
+\end_layout
+
+\begin_layout Itemize
+The response time of PEM and PEW must be less than 2 sec in 99% of times
+ (from user input submission to user notification of the action)
+\end_layout
+
+\begin_layout Itemize
+Each car must send informations to the system each 10 sec when it is used
+ by users
+\end_layout
+
+\begin_layout Itemize
+After each ride, when the car is locked, the car must send a final report
+ to the system in less than a minute
+\end_layout
+
+\begin_layout Itemize
+The system shall support at least 1000 parallel connections
+\end_layout
+
+\begin_layout Subsubsection
+Reliability
+\end_layout
+
+\begin_layout Itemize
+All data of the system is saved in a transactional database ( reliability
+ is assured by the database itself)
+\end_layout
+
+\begin_layout Itemize
+A backup of data should be performed every week to prevent loss of data
+\end_layout
+
+\begin_layout Subsubsection
+Security
+\end_layout
+
+\begin_layout Itemize
+All sensible information must be protected with encryption when exchanged
+ on internet
+\end_layout
+
+\begin_layout Itemize
+A user can change only his personal information
+\end_layout
+
+\begin_layout Itemize
+Only administrators can access all data of the system
+\end_layout
+
+\begin_layout Subsubsection
+Availability
+\end_layout
+
+\begin_layout Itemize
+PE system must be available 24 hours per day, all days
+\end_layout
+
+\begin_layout Subsubsection
+Portability
+\end_layout
+
+\begin_layout Itemize
+PEM shall be developed for iOS, Android and Windows phone
+\end_layout
+
+\begin_layout Subsubsection
+Documentation
+\end_layout
+
+\begin_layout Itemize
+A user guide must be available online
+\end_layout
+
+\begin_layout Itemize
+All documentation produced during the design and development of PE shall
+ be available to personnel
+\end_layout
+
+\begin_layout Subsubsection
+User interface
+\end_layout
+
+\begin_layout Itemize
+The interface (PEM, PEW) must be easy to use and intuitive.
+ No previous knowledge or experience is required to use the service.
+\end_layout
+
+\begin_layout Itemize
+The interface must detect whether a robot is using the application and stop
+ it
+\end_layout
+
+\end_body
+\end_document

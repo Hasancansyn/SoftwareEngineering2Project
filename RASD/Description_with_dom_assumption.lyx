@@ -1,0 +1,201 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Overview of the system
+\end_layout
+
+\begin_layout Subsection
+Product subsystems
+\end_layout
+
+\begin_layout Standard
+PowerEnjoy (PE) software can be decomposed into subsystems interacting between
+ each other.
+ Those subsystems have to be considered abstract as they do not reflect
+ the architecture of the system to be developed.
+\end_layout
+
+\begin_layout Enumerate
+PowerEnjoy web app (PEW): web portal through which users can access services
+ the system offers.
+ Using PEW the user have to manually specify where he/she is.
+ A registered user can see cars and make reservation.
+\end_layout
+
+\begin_layout Enumerate
+PowerEnjoy mobile app (PEM): this application is designed for smart-phones.
+ PEM can retrieve GPS position of the user using the GPS sensor of the phone(if
+ available) and offers the same service as PEW.
+ The unlock of the service can only be done using PEM.
+ PEM offer a system that can recognize license plate through camera.
+\end_layout
+
+\begin_layout Enumerate
+PowerEnjoy backend (PEB): it is the heart of the application.
+ It manages all functions the system offer; it is where the business logic
+ of the application is implemented.
+ 
+\end_layout
+
+\begin_layout Subsection
+Constraints
+\end_layout
+
+\begin_layout Standard
+The following constrain must be met
+\end_layout
+
+\begin_layout Itemize
+A car must be parked where there is internet connection
+\end_layout
+
+\begin_layout Itemize
+Users must have a smartphone
+\end_layout
+
+\begin_layout Itemize
+User must have downloaded PEM before make a reservation
+\end_layout
+
+\begin_layout Itemize
+The user must reserve a car before he use (unlock) it
+\end_layout
+
+\begin_layout Itemize
+A user can reserve at most one car at time
+\end_layout
+
+\begin_layout Itemize
+Cars know safe and unsafe areas
+\end_layout
+
+\begin_layout Subsection
+Domain assumption
+\end_layout
+
+\begin_layout Standard
+After a talk with the stakeholders it is possible to assume that the following
+ assertion always hold.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+D1 Users are real people (they have provided true informations during registrati
+on)
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+D2 Users have a driving license
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+D3 GPS always provide the right position
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+D4 Each car is uniquely identified by a car license plate
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+D5 Reserved cars cannot be moved by their position (until user unlock it)
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+D6 It exist an external system that manage payment(ex.
+ paypal)
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+D7 The stakeholder company has a system to pick up cars and move them.
+ This system must not be integrated into the to-be-developed system
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+D8 Battery charge indicator always provide true values and can estimate
+ on average how many kilometers the car can run
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+D9 Internet connection is reliable
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,731 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsection
+Scenarios
+\end_layout
+
+\begin_layout Standard
+In order to clarify the expected functionality of the system, in this section
+ we propose some possible scenarios.
+ In each scenarios we try to show different functionalities of the system
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 1
+\end_layout
+
+\begin_layout Standard
+Marco is a trader.
+ When he arrived at the office it was sunny, but now it is raining.
+ Before leaving the office, he use his computer to register in the PowerEnjoy
+ car-sharing application.
+ After he has provided his personal details and payment information, the
+ system save his data and returns his password.
+ He then login into the system and manually specify his current address.
+ In a few seconds the system shows him a map with a label in the center,
+ the position specified by Marco, and the position of cars far 500m from
+ that label.
+ He reserve the nearest car, which is 50m away.
+ After closing the web application, he exit the office and go to the car.
+ When he see the car, he use the PowerEnjoy mobile app to unlock the car.
+ The remote system use his position and compare it with the position of
+ the car and decide to unlock the car as they are less than 10m away.
+ Marco then jump into the car and goes home.
+ He left the car near home, in a safe area, and exit the car.
+ The system locks the car and after some seconds receive from the car the
+ battery charge, which is more than 50%.
+ The system applies a discount of 20% and than charges Marco.
+ Marce receive a notification on his smartphones with the ammount to pay
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 2
+\end_layout
+
+\begin_layout Standard
+Anna went out for a dinner with her friends.
+ When the night is over, she and 2 other friends need a car to come back
+ home.
+ She is already registered in PowerEnjoy sevice, so she login using the
+ mobile app.
+ The phone send her coordinates to the system, and the backend replies sending
+ the map with his position and the car nearby(500m of radius).
+ Unfortunatelly, only few car are near and all of them are already reserved.
+ So she extend the map and find a car 700m away.
+ When she is near, the system free the car only after she requires the car
+ to be unlocked.
+ So Anna bring her friends home first and then drive to his house.
+ She get out and unlock the car.
+ The system than applies a discount of 10% due to passengers discount.
+ The system then charges Anna.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 3
+\end_layout
+
+\begin_layout Standard
+Alice works in a office.
+ At lunch time she has to go home.
+ Before leaving the office, she reserve a car near the office.
+ Unfortunaltelly, her boss ask her to remain at work as the group need to
+ work hard on project, thereby she has reserved a car that she will never
+ use.
+ One hour after the reservation, the system mark the reserved car as free
+ and charge 1 euro to Alice.
+\end_layout
+
+\begin_layout Subsection
+Use Case
+\end_layout
+
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename diagrams/use case.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Registration
+\end_layout
+
+\begin_layout Description
+Name: Registration of a user
+\end_layout
+
+\begin_layout Description
+Actors: Unregistered user
+\end_layout
+
+\begin_layout Description
+Entry
+\begin_inset space ~
+\end_inset
+
+Conditions: No entry condition
+\end_layout
+
+\begin_layout Description
+Flow
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+events: 
+\end_layout
+
+\begin_layout Enumerate
+Unregistered user open the registration page
+\end_layout
+
+\begin_layout Enumerate
+Unregistered user fills the form with the required information: firstname,
+ lastname, email, username, address and payment details
+\end_layout
+
+\begin_layout Enumerate
+User submitts the form to the PE backed system
+\end_layout
+
+\begin_layout Enumerate
+Backend checks user data and if the payment details are valid
+\end_layout
+
+\begin_layout Enumerate
+Backend save data of the user in the database
+\end_layout
+
+\begin_layout Enumerate
+Backend generates a password for the user
+\end_layout
+
+\begin_layout Enumerate
+Backend send back to user the password via mail
+\end_layout
+
+\begin_layout Description
+Exception: 
+\end_layout
+
+\begin_layout Itemize
+Informations provided by the user are not valid: the system show a message
+ to the user and ask to insert valid data
+\end_layout
+
+\begin_layout Itemize
+The procedure is interrupted before termination: the system does not insert
+ the new user in the database
+\end_layout
+
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename diagrams/sd_registration.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Login
+\end_layout
+
+\begin_layout Description
+Name: Login of an already registered user
+\end_layout
+
+\begin_layout Description
+Actors: Unregistered user / registered user
+\end_layout
+
+\begin_layout Description
+Entry
+\begin_inset space ~
+\end_inset
+
+Conditions: user has alredy been registered in the database
+\end_layout
+
+\begin_layout Description
+Flow
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+events: 
+\end_layout
+
+\begin_layout Enumerate
+User open the login page
+\end_layout
+
+\begin_layout Enumerate
+User input his pesonal credentials
+\end_layout
+
+\begin_layout Enumerate
+System checks credentials provided by user
+\end_layout
+
+\begin_layout Enumerate
+User get the status of registered user
+\end_layout
+
+\begin_layout Description
+Exception: 
+\end_layout
+
+\begin_layout Itemize
+Credentials provided by the user do not match with saved credentials : show
+ an error on user interface
+\end_layout
+
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename diagrams/se_login.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Reservation(web or mobile)
+\end_layout
+
+\begin_layout Description
+Name: Reservation of a car
+\end_layout
+
+\begin_layout Description
+Actors: Registered user
+\end_layout
+
+\begin_layout Description
+Entry
+\begin_inset space ~
+\end_inset
+
+Conditions: User is on the search page
+\end_layout
+
+\begin_layout Description
+Flow
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+events: 
+\end_layout
+
+\begin_layout Enumerate
+User input a position
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If the user is using PEW he has to manually input an address
+\end_layout
+
+\begin_layout Enumerate
+If the user is using PEM he can choose either to input an address or to
+ use GPS coordination provided by phone
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+System get the user position and check in the database the position of free
+ cars
+\end_layout
+
+\begin_layout Enumerate
+System extract from free cars those that are within a distance of 500m from
+ user position
+\end_layout
+
+\begin_layout Enumerate
+System return a map where it is showed user and cars position
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+User can enlarge/restrict the radius
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+User select a car
+\end_layout
+
+\begin_layout Enumerate
+User click on 
+\begin_inset Quotes eld
+\end_inset
+
+Reserve
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+System is notified on the reservation and start a timer
+\end_layout
+
+\begin_layout Enumerate
+User is notified that the reservation has been registered by the system
+\end_layout
+
+\begin_layout Description
+Exception: 
+\end_layout
+
+\begin_layout Itemize
+Position is not correct/system can not locate the position: an error is
+ showed on the user interface
+\end_layout
+
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename diagrams/se_reservation.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+pick-up
+\end_layout
+
+\begin_layout Description
+Name: Pick up a reserved car
+\end_layout
+
+\begin_layout Description
+Actors: Registered user, car
+\end_layout
+
+\begin_layout Description
+Entry
+\begin_inset space ~
+\end_inset
+
+Conditions: 
+\end_layout
+
+\begin_layout Itemize
+User is near his reserved car
+\end_layout
+
+\begin_layout Itemize
+The user already have a reservation
+\end_layout
+
+\begin_layout Description
+Flow
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+events: 
+\end_layout
+
+\begin_layout Enumerate
+The user allert the backend( using PEM ) that he is near the car
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+PEM, while contacting the backend, send the GPS coordinates of the user
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The system compare GPS coordinates of the user with GPS coordinates of the
+ reserved car
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Disctance should be less than 10/15 m
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The system unlock the car
+\end_layout
+
+\begin_layout Description
+Exception:
+\end_layout
+
+\begin_layout Itemize
+distance is more than 10/15m: the system aller the user on PEM
+\end_layout
+
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename diagrams/se_unlock.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+no-pick up
+\end_layout
+
+\begin_layout Description
+Name: 
+\end_layout
+
+\begin_layout Description
+Actors: Registered user
+\end_layout
+
+\begin_layout Description
+Entry
+\begin_inset space ~
+\end_inset
+
+Conditions: The user already have a reservation
+\end_layout
+
+\begin_layout Description
+Flow
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+events: 
+\end_layout
+
+\begin_layout Enumerate
+Timeout of the timer
+\end_layout
+
+\begin_layout Enumerate
+The system charge the user of 1 euros
+\end_layout
+
+\begin_layout Subsubsection
+the ride
+\end_layout
+
+\begin_layout Description
+Name: 
+\end_layout
+
+\begin_layout Description
+Actors: Registered user, car
+\end_layout
+
+\begin_layout Description
+Entry
+\begin_inset space ~
+\end_inset
+
+Conditions: The user has picked up a car
+\end_layout
+
+\begin_layout Description
+Flow
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+events: 
+\end_layout
+
+\begin_layout Enumerate
+The user starts the car
+\end_layout
+
+\begin_layout Enumerate
+The car starts charging the user
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+the charge is showed on the monitor 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The car start updating the backend:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+GPS position
+\end_layout
+
+\begin_layout Enumerate
+Charge indicator
+\end_layout
+
+\begin_layout Enumerate
+Estimation of kms the car can run
+\end_layout
+
+\begin_layout Enumerate
+Money charge
+\end_layout
+
+\begin_layout Enumerate
+Number of passengers
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The car always signal to the user (through the screen) if he is in a safe
+ or unsafe area.
+\end_layout
+
+\begin_layout Enumerate
+The user park and turn off the engine
+\end_layout
+
+\begin_layout Enumerate
+The user exit the car
+\end_layout
+
+\begin_layout Enumerate
+The user (using PEM) signal to backend to lock the car
+\end_layout
+
+\begin_layout Enumerate
+System locks the car
+\end_layout
+
+\begin_layout Enumerate
+The car sends a last report to the backend
+\end_layout
+
+\begin_layout Enumerate
+System marks the car as free
+\end_layout
+
+\begin_layout Description
+Exception:
+\end_layout
+
+\begin_layout Itemize
+The user tries to left the car in unsafe area: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Backend do not allow lock and show it on PEM
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename diagrams/se_ride.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Charge the user
+\end_layout
+
+\begin_layout Description
+Name: How to charge the user
+\end_layout
+
+\begin_layout Description
+Actors: car, payment system
+\end_layout
+
+\begin_layout Description
+Entry
+\begin_inset space ~
+\end_inset
+
+Conditions: The user have ended the ride, the car has been locked
+\end_layout
+
+\begin_layout Description
+Flow
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+events: 
+\end_layout
+
+\begin_layout Enumerate
+The system get last informations from the car
+\end_layout
+
+\begin_layout Enumerate
+The system evaluate all the informations has been received from the car
+ along the ride (if there has been 2 or more passengers on the car the system
+ must know this for the next point)
+\end_layout
+
+\begin_layout Enumerate
+The system evaluate all the discount the user is elegible for
+\end_layout
+
+\begin_layout Enumerate
+The system calculate the bill
+\end_layout
+
+\begin_layout Enumerate
+The system applies the maximum discount between those available
+\end_layout
+
+\begin_layout Enumerate
+The system charge the user
+\end_layout
+
+\end_body
+\end_document

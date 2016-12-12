@@ -1,0 +1,492 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsection
+Actors
+\end_layout
+
+\begin_layout Standard
+In this section it is provided a list of users that can interact with PowerEnjoy
+ system.
+\end_layout
+
+\begin_layout Itemize
+PowerEnjoy personel:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+street operators: they have to take care of cars in the street ( recharge
+ battery, repair cars if possible or bring broken car to car-repair
+\end_layout
+
+\begin_layout Itemize
+call-center: available personel to user of the system
+\end_layout
+
+\begin_layout Itemize
+web platform maintainers: 
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Goals
+\end_layout
+
+\begin_layout Description
+G1 Non-registered user must be able to register and sig-in using their credentia
+l
+\end_layout
+
+\begin_layout Description
+G2 User must be able to see available cars 
+\end_layout
+
+\begin_layout Description
+G3 User must be able to reserve a car
+\end_layout
+
+\begin_layout Description
+G4 User must be able to unlock/get access to car once he is near it (>>Hasan)
+\end_layout
+
+\begin_layout Description
+G The system should incentivize virtous behaviour
+\end_layout
+
+\begin_layout Subsection
+Requirements
+\end_layout
+
+\begin_layout Enumerate
+The system to be developed need to interact with the external paymant system.
+\end_layout
+
+\begin_layout Enumerate
+Each is provided with an always-active internet connection.
+ Each 10 seconds the car send his position(GPS coordinates) to the web server(in
+ case the car is in use) or a ping in case the car is stationary.
+ If the do not compunicate with the web server, the car has to be condidered
+ out of service.
+\end_layout
+
+\begin_layout Enumerate
+Each car can detect the number of people onbord.
+ 
+\end_layout
+
+\begin_layout Enumerate
+A car can be reserved/picked up if and only if it is free.
+\end_layout
+
+\begin_layout Enumerate
+Each car inform the system at each state change(available/non-available)
+\end_layout
+
+\begin_layout Enumerate
+The car has a battery charge indicator.
+ Battery statistics are provided to the system together with position.
+\end_layout
+
+\begin_layout Enumerate
+A car connot be picked up if it has low-battery(out of service for user).
+ The system will be notified about battery state and an operator will be
+ sent to recharge battery
+\end_layout
+
+\begin_layout Enumerate
+At each reservation/usage of a single car, only one user is assigned.
+\end_layout
+
+\begin_layout Enumerate
+Each car is provided with a timer.
+ The timer starts from 0 at the beginning of the ride(the user open the
+ car door), stop at the end of the ride(the car is parked and closed).
+ Timer is restarted at each ride
+\end_layout
+
+\begin_layout Enumerate
+Each user, when reserve a car or when he picks up it, is notified the battery
+ state and an estimation of how many kilometers the car can do.
+\end_layout
+
+\begin_layout Enumerate
+???Delimited area of operation???: if a car goes outside???
+\end_layout
+
+\begin_layout Enumerate
+Payment infos provided by user are real.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Payment account always have the money to pay the service
+\end_layout
+
+\begin_layout Enumerate
+User can make reservation up to one hour in advance
+\end_layout
+
+\begin_layout Enumerate
+Define a way to charge the user if he has no money.
+\end_layout
+
+\begin_layout Enumerate
+Handle new car 
+\end_layout
+
+\begin_layout Subsection
+Text Assumption
+\end_layout
+
+\begin_layout Itemize
+No previous system to be integrated
+\end_layout
+
+\begin_layout Itemize
+User need to be registered
+\end_layout
+
+\begin_layout Part
+REQUIREMENTs
+\end_layout
+
+\begin_layout Section
+External interface requirements
+\end_layout
+
+\begin_layout Standard
+In this sections it is provided 
+\end_layout
+
+\begin_layout Subsection
+Service interface
+\end_layout
+
+\begin_layout Standard
+The system to be developed need to interact with the external services
+\end_layout
+
+\begin_layout Enumerate
+Gps system of smartphones
+\end_layout
+
+\begin_layout Enumerate
+Gps system of cars
+\end_layout
+
+\begin_layout Enumerate
+External maps (ex.
+ Google Maps) to see the position of cars
+\end_layout
+
+\begin_layout Enumerate
+Online payment systems( paypal, credit card ...)
+\end_layout
+
+\begin_layout Subsection
+Comunication interface
+\end_layout
+
+\begin_layout Standard
+The system to be developed need to comunicate trought internet
+\end_layout
+
+\begin_layout Subsection
+Technological requirements
+\end_layout
+
+\begin_layout Standard
+The cars that will be used in PowerEnjoy carsharing system must be provided
+ with the following technological subsystems:
+\end_layout
+
+\begin_layout Enumerate
+The cars need to have a GPS system
+\end_layout
+
+\begin_layout Enumerate
+The cars need to have a internet connection
+\end_layout
+
+\begin_layout Enumerate
+The cars need to know how many passengers are onboard
+\end_layout
+
+\begin_layout Enumerate
+The cars can be locked/unlocked remotely
+\end_layout
+
+\begin_layout Enumerate
+Assumption: an elettric car have a battery charge indicator and provide
+ an estimation of km the car can run
+\end_layout
+
+\begin_layout Subsection
+Functional requirement
+\end_layout
+
+\begin_layout Subsubsection
+[G1] Non-registered user must be able to register and sig-in using their
+ credential
+\end_layout
+
+\begin_layout Enumerate
+System shall provide a registration form
+\end_layout
+
+\begin_layout Enumerate
+System shall save data provided by users
+\end_layout
+
+\begin_layout Enumerate
+(System shall return login data)
+\end_layout
+
+\begin_layout Enumerate
+NF security login
+\end_layout
+
+\begin_layout Subsubsection
+[G2] User must be able to see available cars
+\end_layout
+
+\begin_layout Enumerate
+System shall interaface with gps of mobile phone in case the user want to
+ use his/her position
+\end_layout
+
+\begin_layout Enumerate
+System shall retrive available car position(do not show reserved car; do
+ not show cars in use by other users)
+\end_layout
+
+\begin_layout Enumerate
+System shall show position of the user and of other cars in a map on the
+ device used by the user.
+ The system only show available cars within a certain distance from the
+ user position(the distance can be specified by the user)
+\end_layout
+
+\begin_layout Enumerate
+System shall show to user informations for each available car:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Charge level
+\end_layout
+
+\begin_layout Enumerate
+An estimation of the km the car can run
+\end_layout
+
+\begin_layout Enumerate
+Number of seats
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+[G3] User must be able to reserve a car
+\end_layout
+
+\begin_layout Enumerate
+System shall allow user to reserve a car
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+System save the reservation and generate an unique id
+\end_layout
+
+\begin_layout Enumerate
+After reservation the system apply a timer to the reservation
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If the user does not pick up the car within a hour from reservation the
+ system charge a 1euros fee
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Subsubsection
+The system should incentivize virtuos behaviour
+\end_layout
+
+\begin_layout Standard
+Within this section there will be collected all functional requirements
+ related to virtuos behaviour
+\end_layout
+
+\begin_layout Enumerate
+The system shall collect the following informations after each ride:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+number of passengers onboard
+\end_layout
+
+\begin_layout Enumerate
+how long there have been more than one passenger onboard
+\end_layout
+
+\begin_layout Enumerate
+battery charge
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The system shall calculate the discount according to virtous functionality
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+if more than a discount is applicable to the user, the system apply the
+ maximum discount between all applicable discount (not the comulative discount)
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Virtuos Behaviour
+\end_layout
+
+\begin_layout Standard
+In this section it has been reported the requirements that virtuos behaviuor
+ clauses requires.
+ (For the pourpose of the course, I have put these requirements in a separated
+ section.
+ )
+\end_layout
+
+\begin_layout Subsubsection
+If the system detects the user took at least two other passengers onto the
+ car, the syste applies a discount of 10% on the last ride
+\end_layout
+
+\begin_layout Enumerate
+The car shall detect passengers onboard.
+\end_layout
+
+\begin_layout Enumerate
+The car comunicate to the system passengers onboard.
+\end_layout
+
+\begin_layout Enumerate
+The system calculate how much the user have to pay at the end of the ride
+\end_layout
+
+\begin_layout Enumerate
+The system applies a discount of 10% if the number of people inside the
+ car has been >= 2 for at least 50% of the ride
+\end_layout
+
+\begin_layout Enumerate
+The system charge the user.
+\end_layout
+
+\begin_layout Subsubsection
+If a car is left with no more than 50% of the battery empty, the system
+ applies a discount of 20% on the last ride
+\end_layout
+
+\begin_layout Enumerate
+When the user finishes the ride and lock the car, the car send to the system:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Position where the car has been left
+\end_layout
+
+\begin_layout Enumerate
+time
+\end_layout
+
+\begin_layout Enumerate
+Battery charge
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The system calculate how much the user have to pay
+\end_layout
+
+\begin_layout Enumerate
+The system apply a discount of 20% if the car has been left with 50% or
+ more battery charge
+\end_layout
+
+\end_body
+\end_document

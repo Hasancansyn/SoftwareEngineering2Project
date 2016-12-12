@@ -1,0 +1,1559 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Subsection
+Purpose of this document
+\end_layout
+
+\begin_layout Standard
+The purpose of the RASD (Requirements Analysis and Specification Document)
+ is to give a de- tailed description, analysis and specification of the
+ requirements for the PowerEnjoy system.
+ This document will explain the goals derived from stakeholders’ expectations,
+ the characteristics of the application domain and the assumptions made
+ to solve ambiguity and incompleteness.
+ Start- ing from goals and domain properties, requirements will be formulated
+ according to a specific systematic methodology and then specified using
+ both informal and formal notations.
+ However this document should not be considered the final draft for the
+ software specifications since in the following phases several fixing may
+ be necessary.
+\end_layout
+
+\begin_layout Standard
+This document is primarily intended to be proposed to the stakeholders for
+ their approval, to the analysts and programmers for the development of
+ the project and to the testing team the validation of the first version
+ of the software.
+\end_layout
+
+\begin_layout Subsection
+Scope
+\end_layout
+
+\begin_layout Standard
+PowerEnjoy(PE) is an application intended to manage the car-sharing system
+ stakeholders have.
+ The usage of the system must be simple to use for the user in order to
+ make the service competitive.
+\end_layout
+
+\begin_layout Standard
+The system offers a normal car-sharing service: reservation of a car can
+ be done through web browser or using a specific mobile app, but to use
+ the car the users need a smartphone with GPS and internet connection.
+ 
+\end_layout
+
+\begin_layout Standard
+The main differnce between PowerEnjoy and other car-sharing relies on the
+ fact that our service is environmen friendly.
+ Our cars are all battery-only powered and user of our system could claim
+ to be friend of the environment.
+\end_layout
+
+\begin_layout Subsection
+Actors of the system
+\end_layout
+
+\begin_layout Standard
+PE will interact with different kind of users to achieve his goals.
+ 
+\end_layout
+
+\begin_layout Itemize
+Non registered user: a person that has not registered .
+ These user can do 2 actions: register ( and get the credential to login)
+ and login with their credential.
+ 
+\end_layout
+
+\begin_layout Itemize
+Registered user: a person that has full access to the functions of the system.
+\end_layout
+
+\begin_layout Itemize
+Cars: they interact with the system providing informations on their state.
+\end_layout
+
+\begin_layout Subsection
+Requirement Engineering
+\end_layout
+
+\begin_layout Subsubsection
+Goals
+\end_layout
+
+\begin_layout Standard
+The following goals have been identified using the available documentation
+ and the laboratory lesson:
+\end_layout
+
+\begin_layout Description
+G1 Non-registered user must be able to register and sig-in using their credentia
+l
+\end_layout
+
+\begin_layout Description
+G2 User must be able to see available cars 
+\end_layout
+
+\begin_layout Description
+G3 User must be able to reserve a car
+\end_layout
+
+\begin_layout Description
+G4 User must be able to unlock/get access to car once he is near it
+\end_layout
+
+\begin_layout Description
+G5 The system should incentivize virtous behaviour
+\end_layout
+
+\begin_layout Section
+Overview of the system
+\end_layout
+
+\begin_layout Subsection
+Product subsystems
+\end_layout
+
+\begin_layout Standard
+PowerEnjoy (PE) software can be decomposed into subsystems interacting between
+ each other.
+ Those subsystems have to be considered abstract as they do not reflect
+ the architecture of the system to be developed.
+\end_layout
+
+\begin_layout Enumerate
+PowerEnjoy web app (PEW): web portal through which users can access services
+ the system offers.
+ Using PEW the user have to manually specify where he/she is.
+ A registered user can see cars and make reservation.
+\end_layout
+
+\begin_layout Enumerate
+PowerEnjoy mobile app (PEM): this application is designed for smart-phones.
+ PEM can retrieve GPS position of the user using the GPS sensor of the phone(if
+ available) and offers the same service as PEW.
+ The unlock of the service can only be done using PEM.
+ PEM offer a system that can recognize license plate through camera.
+\end_layout
+
+\begin_layout Enumerate
+PowerEnjoy backend (PEB): it is the heart of the application.
+ It manages all functions the system offer; it is where the business logic
+ of the application is implemented.
+ 
+\end_layout
+
+\begin_layout Subsection
+Constraints
+\end_layout
+
+\begin_layout Standard
+The following constrain have to be met
+\end_layout
+
+\begin_layout Itemize
+A car must be parked where there is internet connection
+\end_layout
+
+\begin_layout Itemize
+Users must have a smartphone
+\end_layout
+
+\begin_layout Itemize
+User must have downloaded PEM before make a reservation
+\end_layout
+
+\begin_layout Itemize
+The user must reserve a car before he use (unlock) it
+\end_layout
+
+\begin_layout Itemize
+A user can reserve at most one car at time
+\end_layout
+
+\begin_layout Itemize
+Cars know safe and unsafe areas
+\end_layout
+
+\begin_layout Subsection
+Domain assumption
+\end_layout
+
+\begin_layout Standard
+After a talk with the stakeholders it is possible to assume that the following
+ assertion always hold.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+D1 Users are real people (they have provided true informations during registrati
+on)
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+D2 Users have a driving license
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+D3 GPS always provide the right position
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+D4 Each car is uniquely identified by a car license plate
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+D5 Reserved cars cannot be moved by their position (until user unlock it)
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+D6 It exist an external system that manage payment(ex.
+ paypal)
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+D7 The stakeholder company has a system to pick up cars and move them.
+ This system must not be integrated into the to-be-developed system
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+D8 Battery charge indicator always provide true values and can estimate
+ on average how many kilometers the car can run
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+D9 Internet connection is reliable
+\end_layout
+
+\begin_layout Section
+Requirements
+\end_layout
+
+\begin_layout Subsection
+External interface requirements
+\end_layout
+
+\begin_layout Standard
+In this sections it is provided 
+\end_layout
+
+\begin_layout Subsection
+Service interface
+\end_layout
+
+\begin_layout Standard
+The system to be developed need to interact with the external services
+\end_layout
+
+\begin_layout Enumerate
+Gps system of smartphones
+\end_layout
+
+\begin_layout Enumerate
+Gps system of cars
+\end_layout
+
+\begin_layout Enumerate
+Mobile phone camera
+\end_layout
+
+\begin_layout Enumerate
+External maps (ex.
+ Google Maps) to see the position of cars
+\end_layout
+
+\begin_layout Enumerate
+Online payment systems( paypal, credit card ...)
+\end_layout
+
+\begin_layout Enumerate
+email server
+\end_layout
+
+\begin_layout Subsection
+Comunication interface
+\end_layout
+
+\begin_layout Standard
+The system to be developed need to comunicate trought internet
+\end_layout
+
+\begin_layout Subsection
+Technological requirements
+\end_layout
+
+\begin_layout Standard
+The cars that will be used in PowerEnjoy carsharing system must be provided
+ with the following technological subsystems:
+\end_layout
+
+\begin_layout Enumerate
+The cars need to have a GPS system
+\end_layout
+
+\begin_layout Enumerate
+The cars need to have a internet connection
+\end_layout
+
+\begin_layout Enumerate
+The cars need to know how many passengers are on board
+\end_layout
+
+\begin_layout Enumerate
+The cars can be locked/unlocked remotely
+\end_layout
+
+\begin_layout Subsection
+Functional requirement
+\end_layout
+
+\begin_layout Subsubsection
+[G1] Non-registered user must be able to register and log-in using their
+ credential
+\end_layout
+
+\begin_layout Enumerate
+System shall provide a registration form
+\end_layout
+
+\begin_layout Enumerate
+System shall save data provided by users
+\end_layout
+
+\begin_layout Enumerate
+System shall verify payment details provided by the user at registration
+ ( using API of the external payment service )
+\end_layout
+
+\begin_layout Enumerate
+System shall return to user login password via email
+\end_layout
+
+\begin_layout Enumerate
+System shall provide a log-in form
+\end_layout
+
+\begin_layout Subsubsection
+[G2] User must be able to see available cars
+\end_layout
+
+\begin_layout Enumerate
+System shall interaface with gps of mobile phone in case the user want to
+ use his/her position
+\end_layout
+
+\begin_layout Enumerate
+System shall retrive available car position(do not show reserved car; do
+ not show cars in use by other users)
+\end_layout
+
+\begin_layout Enumerate
+System shall show position of the user and of other cars in a map on the
+ device used by the user.
+ The system only show available cars within a certain distance from the
+ user position(the default distance is 500m)
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+The system shall allow user to specify the distance from a given position
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+[G3] User must be able to reserve a car
+\end_layout
+
+\begin_layout Enumerate
+System shall allow user to reserve a car
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+System save the reservation and generate an unique id
+\end_layout
+
+\begin_layout Enumerate
+After reservation the system apply a timer to the reservation
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If the user does not pick up the car within a hour from reservation the
+ system charge a 1euros fee
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+System shall notify the user when a reservation has been inserted in the
+ system
+\end_layout
+
+\begin_layout Enumerate
+System shall stop a reservation if the user already have a pending reservation
+ or is using a car
+\end_layout
+
+\begin_layout Subsubsection
+[G4]User must be able to unlock a car if reserved by himself
+\end_layout
+
+\begin_layout Enumerate
+System shall be able to use the position of the user
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+PEM shall be able to send position to the backend
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+System shall unlock the car remotely when a user and his reserved car are
+ less than 10m away
+\end_layout
+
+\begin_layout Subsubsection
+System have to be updated by car
+\end_layout
+
+\begin_layout Enumerate
+Car need a system to communicate (via internet) to the remote system
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Cars have to provide:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Power charge
+\end_layout
+
+\begin_layout Enumerate
+estimation of km it can run
+\end_layout
+
+\begin_layout Enumerate
+GPS coordinates
+\end_layout
+
+\begin_layout Enumerate
+Money charge
+\end_layout
+
+\begin_layout Enumerate
+Position is safe/unsafe
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Informations at point a must be provided during the ride and when the car
+ is locked
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+[G5]The system should incentivize virtuous behavior
+\end_layout
+
+\begin_layout Standard
+Within this section there will be collected all functional requirements
+ related to virtuous behavior
+\end_layout
+
+\begin_layout Enumerate
+The system shall collect the following informations after each ride:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+number of passengers on board
+\end_layout
+
+\begin_layout Enumerate
+battery charge
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The system shall calculate the discount according to virtuous functionality
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+if more than a discount is applicable to the user, the system apply the
+ maximum discount between all applicable discount (not the cumulative discount)
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+Others functional requirements
+\end_layout
+
+\begin_layout Enumerate
+System shall notify user about how much he has to pay after each ride.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+The notification contains an invoice with the ammount of money to pay and
+ the applied discount( if any)
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+If the transaction cannot be done due to insufficient money, the application
+ will not offer other services until the user pay the debt
+\end_layout
+
+\begin_layout Subsection
+Scenarios
+\end_layout
+
+\begin_layout Standard
+In order to clarify the expected functionality of the system, in this section
+ we propose some possible scenarios.
+ In each scenarios we try to show different functionalities of the system
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 1
+\end_layout
+
+\begin_layout Standard
+Marco is a trader.
+ When he arrived at the office it was sunny, but now it is raining.
+ Before leaving the office, he use his computer to register in the PowerEnjoy
+ car-sharing application.
+ After he has provided his personal details and payment information, the
+ system save his data and returns his password.
+ He then login into the system and manually specify his current address.
+ In a few seconds the system shows him a map with a label in the center,
+ the position specified by Marco, and the position of cars far 500m from
+ that label.
+ He reserve the nearest car, which is 50m away.
+ After closing the web application, he exit the office and go to the car.
+ When he see the car, he use the PowerEnjoy mobile app to unlock the car.
+ The remote system use his position and compare it with the position of
+ the car and decide to unlock the car as they are less than 10m away.
+ Marco then jump into the car and goes home.
+ He left the car near home, in a safe area, and exit the car.
+ The system locks the car and after some seconds receive from the car the
+ battery charge, which is more than 50%.
+ The system applies a discount of 20% and than charges Marco.
+ Marce receive a notification on his smartphones with the ammount to pay
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 2
+\end_layout
+
+\begin_layout Standard
+Anna went out for a dinner with her friends.
+ When the night is over, she and 2 other friends need a car to come back
+ home.
+ She is already registered in PowerEnjoy sevice, so she login using the
+ mobile app.
+ The phone send her coordinates to the system, and the backend replies sending
+ the map with his position and the car nearby(500m of radius).
+ Unfortunatelly, only few car are near and all of them are already reserved.
+ So she extend the map and find a car 700m away.
+ When she is near, the system free the car only after she requires the car
+ to be unlocked.
+ So Anna bring her friends home first and then drive to his house.
+ She get out and unlock the car.
+ The system than applies a discount of 10% due to passengers discount.
+ The system then charges Anna.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 3
+\end_layout
+
+\begin_layout Standard
+Alice works in a office.
+ At lunch time she has to go home.
+ Before leaving the office, she reserve a car near the office.
+ Unfortunaltelly, her boss ask her to remain at work as the group need to
+ work hard on project, thereby she has reserved a car that she will never
+ use.
+ One hour after the reservation, the system mark the reserved car as free
+ and charge 1 euro to Alice.
+\end_layout
+
+\begin_layout Subsection
+Use Case
+\end_layout
+
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename diagrams/use case.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Registration
+\end_layout
+
+\begin_layout Description
+Name: Registration of a user
+\end_layout
+
+\begin_layout Description
+Actors: Unregistered user
+\end_layout
+
+\begin_layout Description
+Entry
+\begin_inset space ~
+\end_inset
+
+Conditions: No entry condition
+\end_layout
+
+\begin_layout Description
+Flow
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+events: 
+\end_layout
+
+\begin_layout Enumerate
+Unregistered user open the registration page
+\end_layout
+
+\begin_layout Enumerate
+Unregistered user fills the form with the required information: firstname,
+ lastname, email, username, address and payment details
+\end_layout
+
+\begin_layout Enumerate
+User submitts the form to the PE backed system
+\end_layout
+
+\begin_layout Enumerate
+Backend checks user data and if the payment details are valid
+\end_layout
+
+\begin_layout Enumerate
+Backend save data of the user in the database
+\end_layout
+
+\begin_layout Enumerate
+Backend generates a password for the user
+\end_layout
+
+\begin_layout Enumerate
+Backend send back to user the password via mail
+\end_layout
+
+\begin_layout Description
+Exception: 
+\end_layout
+
+\begin_layout Itemize
+Informations provided by the user are not valid: the system show a message
+ to the user and ask to insert valid data
+\end_layout
+
+\begin_layout Itemize
+The procedure is interrupted before termination: the system does not insert
+ the new user in the database
+\end_layout
+
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename diagrams/sd_registration.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Login
+\end_layout
+
+\begin_layout Description
+Name: Login of an already registered user
+\end_layout
+
+\begin_layout Description
+Actors: Unregistered user / registered user
+\end_layout
+
+\begin_layout Description
+Entry
+\begin_inset space ~
+\end_inset
+
+Conditions: user has alredy been registered in the database
+\end_layout
+
+\begin_layout Description
+Flow
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+events: 
+\end_layout
+
+\begin_layout Enumerate
+User open the login page
+\end_layout
+
+\begin_layout Enumerate
+User input his pesonal credentials
+\end_layout
+
+\begin_layout Enumerate
+System checks credentials provided by user
+\end_layout
+
+\begin_layout Enumerate
+User get the status of registered user
+\end_layout
+
+\begin_layout Description
+Exception: 
+\end_layout
+
+\begin_layout Itemize
+Credentials provided by the user do not match with saved credentials : show
+ an error on user interface
+\end_layout
+
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename diagrams/se_login.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Reservation(web or mobile)
+\end_layout
+
+\begin_layout Description
+Name: Reservation of a car
+\end_layout
+
+\begin_layout Description
+Actors: Registered user
+\end_layout
+
+\begin_layout Description
+Entry
+\begin_inset space ~
+\end_inset
+
+Conditions: User is on the search page
+\end_layout
+
+\begin_layout Description
+Flow
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+events: 
+\end_layout
+
+\begin_layout Enumerate
+User input a position
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If the user is using PEW he has to manually input an address
+\end_layout
+
+\begin_layout Enumerate
+If the user is using PEM he can choose either to input an address or to
+ use GPS coordination provided by phone
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+System get the user position and check in the database the position of free
+ cars
+\end_layout
+
+\begin_layout Enumerate
+System extract from free cars those that are within a distance of 500m from
+ user position
+\end_layout
+
+\begin_layout Enumerate
+System return a map where it is showed user and cars position
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+User can enlarge/restrict the radius
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+User select a car
+\end_layout
+
+\begin_layout Enumerate
+User click on 
+\begin_inset Quotes eld
+\end_inset
+
+Reserve
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+System is notified on the reservation and start a timer
+\end_layout
+
+\begin_layout Enumerate
+User is notified that the reservation has been registered by the system
+\end_layout
+
+\begin_layout Description
+Exception: 
+\end_layout
+
+\begin_layout Itemize
+Position is not correct/system can not locate the position: an error is
+ showed on the user interface
+\end_layout
+
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename diagrams/se_reservation.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+pick-up
+\end_layout
+
+\begin_layout Description
+Name: Pick up a reserved car
+\end_layout
+
+\begin_layout Description
+Actors: Registered user, car
+\end_layout
+
+\begin_layout Description
+Entry
+\begin_inset space ~
+\end_inset
+
+Conditions: 
+\end_layout
+
+\begin_layout Itemize
+User is near his reserved car
+\end_layout
+
+\begin_layout Itemize
+The user already have a reservation
+\end_layout
+
+\begin_layout Description
+Flow
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+events: 
+\end_layout
+
+\begin_layout Enumerate
+The user allert the backend( using PEM ) that he is near the car
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+PEM, while contacting the backend, send the GPS coordinates of the user
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The system compare GPS coordinates of the user with GPS coordinates of the
+ reserved car
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Disctance should be less than 10/15 m
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The system unlock the car
+\end_layout
+
+\begin_layout Description
+Exception:
+\end_layout
+
+\begin_layout Itemize
+distance is more than 10/15m: the system aller the user on PEM
+\end_layout
+
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename diagrams/se_unlock.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+no-pick up
+\end_layout
+
+\begin_layout Description
+Name: 
+\end_layout
+
+\begin_layout Description
+Actors: Registered user
+\end_layout
+
+\begin_layout Description
+Entry
+\begin_inset space ~
+\end_inset
+
+Conditions: The user already have a reservation
+\end_layout
+
+\begin_layout Description
+Flow
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+events: 
+\end_layout
+
+\begin_layout Enumerate
+Timeout of the timer
+\end_layout
+
+\begin_layout Enumerate
+The system charge the user of 1 euros
+\end_layout
+
+\begin_layout Subsubsection
+the ride
+\end_layout
+
+\begin_layout Description
+Name: 
+\end_layout
+
+\begin_layout Description
+Actors: Registered user, car
+\end_layout
+
+\begin_layout Description
+Entry
+\begin_inset space ~
+\end_inset
+
+Conditions: The user has picked up a car
+\end_layout
+
+\begin_layout Description
+Flow
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+events: 
+\end_layout
+
+\begin_layout Enumerate
+The user starts the car
+\end_layout
+
+\begin_layout Enumerate
+The car starts charging the user
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+the charge is showed on the monitor 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The car start updating the backend:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+GPS position
+\end_layout
+
+\begin_layout Enumerate
+Charge indicator
+\end_layout
+
+\begin_layout Enumerate
+Estimation of kms the car can run
+\end_layout
+
+\begin_layout Enumerate
+Money charge
+\end_layout
+
+\begin_layout Enumerate
+Number of passengers
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The car always signal to the user (through the screen) if he is in a safe
+ or unsafe area.
+\end_layout
+
+\begin_layout Enumerate
+The user park and turn off the engine
+\end_layout
+
+\begin_layout Enumerate
+The user exit the car
+\end_layout
+
+\begin_layout Enumerate
+The user (using PEM) signal to backend to lock the car
+\end_layout
+
+\begin_layout Enumerate
+System locks the car
+\end_layout
+
+\begin_layout Enumerate
+The car sends a last report to the backend
+\end_layout
+
+\begin_layout Enumerate
+System marks the car as free
+\end_layout
+
+\begin_layout Description
+Exception:
+\end_layout
+
+\begin_layout Itemize
+The user tries to left the car in unsafe area: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Backend do not allow lock and show it on PEM
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename diagrams/se_ride.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Charge the user
+\end_layout
+
+\begin_layout Description
+Name: How to charge the user
+\end_layout
+
+\begin_layout Description
+Actors: car, payment system
+\end_layout
+
+\begin_layout Description
+Entry
+\begin_inset space ~
+\end_inset
+
+Conditions: The user have ended the ride, the car has been locked
+\end_layout
+
+\begin_layout Description
+Flow
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+events: 
+\end_layout
+
+\begin_layout Enumerate
+The system get last informations from the car
+\end_layout
+
+\begin_layout Enumerate
+The system evaluate all the informations has been received from the car
+ along the ride (if there has been 2 or more passengers on the car the system
+ must know this for the next point)
+\end_layout
+
+\begin_layout Enumerate
+The system evaluate all the discount the user is elegible for
+\end_layout
+
+\begin_layout Enumerate
+The system calculate the bill
+\end_layout
+
+\begin_layout Enumerate
+The system applies the maximum discount between those available
+\end_layout
+
+\begin_layout Enumerate
+The system charge the user
+\end_layout
+
+\begin_layout Subsection
+Class Diagram
+\end_layout
+
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename diagrams/class diagram.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Non functional requirements
+\end_layout
+
+\begin_layout Standard
+Since PE is intended to offer a service to customers and in order to guarantee
+ a high quality of service, according to stakeholders' expectations we identifie
+d the following non functional requirements
+\end_layout
+
+\begin_layout Subsubsection
+Performance
+\end_layout
+
+\begin_layout Itemize
+The response time of PEM and PEW must be less than 2 sec in 99% of times
+ (from user input submission to user notification of the action)
+\end_layout
+
+\begin_layout Itemize
+Each car must send informations to the system each 10 sec when it is used
+ by users
+\end_layout
+
+\begin_layout Itemize
+After each ride, when the car is locked, the car must send a final report
+ to the system in less than a minute
+\end_layout
+
+\begin_layout Itemize
+The system shall support at least 1000 parallel connections
+\end_layout
+
+\begin_layout Subsubsection
+Reliability
+\end_layout
+
+\begin_layout Itemize
+All data of the system is saved in a transactional database ( reliability
+ is assured by the database itself)
+\end_layout
+
+\begin_layout Itemize
+A backup of data should be performed every week to prevent loss of data
+\end_layout
+
+\begin_layout Subsubsection
+Security
+\end_layout
+
+\begin_layout Itemize
+All sensible information must be protected with encryption when exchanged
+ on internet
+\end_layout
+
+\begin_layout Itemize
+A user can change only his personal information
+\end_layout
+
+\begin_layout Itemize
+Only administrators can access all data of the system
+\end_layout
+
+\begin_layout Subsubsection
+Availability
+\end_layout
+
+\begin_layout Itemize
+PE system must be available 24 hours per day, all days
+\end_layout
+
+\begin_layout Subsubsection
+Portability
+\end_layout
+
+\begin_layout Itemize
+PEM shall be developed for iOS, Android and Windows phone
+\end_layout
+
+\begin_layout Subsubsection
+Documentation
+\end_layout
+
+\begin_layout Itemize
+A user guide must be available online
+\end_layout
+
+\begin_layout Itemize
+All documentation produced during the design and development of PE shall
+ be available to personnel
+\end_layout
+
+\begin_layout Subsubsection
+User interface
+\end_layout
+
+\begin_layout Itemize
+The interface (PEM, PEW) must be easy to use and intuitive.
+ No previous knowledge or experience is required to use the service.
+\end_layout
+
+\begin_layout Itemize
+The interface must detect whether a robot is using the application and stop
+ it
+\end_layout
+
+\begin_layout Section
+Alloy
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "/home/kaiser_soze/Downloads/Alloy-Modelling (1).lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\start_of_appendix
+Used
+\begin_inset space ~
+\end_inset
+
+Tools
+\end_layout
+
+\begin_layout Enumerate
+LYX visual editor for LATEX (http://www.lyx.org/) to write this document.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Star UML (http://staruml.io/) for use case diagram, class diagram, sequence
+ diagram.
+\end_layout
+
+\begin_layout Description
+Hours
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+work
+\end_layout
+
+\begin_layout Description
+Alessandro
+\begin_inset space ~
+\end_inset
+
+Folloni
+\end_layout
+
+\begin_layout Itemize
+22 october: 3h
+\end_layout
+
+\begin_layout Itemize
+23 october: 4h
+\end_layout
+
+\begin_layout Itemize
+2 november: 2h
+\end_layout
+
+\begin_layout Itemize
+4 november: 6h
+\end_layout
+
+\begin_layout Itemize
+5 november: 10h
+\end_layout
+
+\begin_layout Itemize
+6 november: 6h
+\end_layout
+
+\begin_layout Itemize
+7 november: 2h
+\end_layout
+
+\begin_layout Description
+Hassancan
+\begin_inset space ~
+\end_inset
+
+Sayilan
+\end_layout
+
+\begin_layout Itemize
+Studying PDF and Class Notes
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+20/10/2016: 1h 
+\end_layout
+
+\begin_layout Itemize
+25/10/2016: 3h
+\end_layout
+
+\begin_layout Itemize
+26/10/2016: 30m
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Goals-Domain Assumptions-Requirements
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+26/10/2016: 30m
+\end_layout
+
+\begin_layout Itemize
+29/10/2016: 1h
+\end_layout
+
+\begin_layout Itemize
+30/10/2016: 2h
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Functional Requirements-Scenarios
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+04/10/2016: 1h
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Checking Alessandro's Work-Fixing Mistakes
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+05/10/2016: 1h
+\end_layout
+
+\begin_layout Itemize
+06/10/2016: 1h
+\end_layout
+
+\begin_layout Itemize
+07/10/2016: 1h
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Checking Diagrams-Working on Alloy
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+09/10/2016: 3h
+\end_layout
+
+\begin_layout Itemize
+11/10/2016: 2h
+\end_layout
+
+\begin_layout Itemize
+12/10/2016: 5h
+\end_layout
+
+\begin_layout Itemize
+13/10/2016: 3h
+\end_layout
+
+\end_deeper
+\end_body
+\end_document
